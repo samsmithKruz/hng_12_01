@@ -31,9 +31,9 @@ class ApiController
     {
         $number = request('get')->number ?? false;
 
-        if (!filter_var($number, FILTER_VALIDATE_INT) !== false) {
+        if (!filter_var($number, FILTER_VALIDATE_INT) !== false && $number != "0") {
             jsonResponse([
-                'number' => 'alphabet',
+                'number' => is_int($number) || $number == false ? "" : 'alphabet',
                 'error' => true
             ], 400);
 
