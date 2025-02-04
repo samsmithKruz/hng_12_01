@@ -3,6 +3,19 @@
 
 class ApiController
 {
+    public function __construct()
+    {
+        // Enable CORS for this specific API method
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+        // Handle preflight OPTIONS request
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit();
+        }
+    }
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -11,7 +24,7 @@ class ApiController
         }
         jsonResponse([
             'status' => true,
-            'message'=>'welcome to api route.'
+            'message' => 'welcome to api route.'
         ]);
     }
     public function classify_number()
