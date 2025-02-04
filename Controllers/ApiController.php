@@ -9,16 +9,10 @@ class ApiController
             http_response_code(405);
             jsonResponse(['error' => 'Method Not Allowed'], 405);
         }
-        jsonResponse([]);
-        http_response_code(200);
-        $data = httpRequest('http://numbersapi.com/42');
-        // $data = [
-        //     'email' => 'samspike46@gmail.com',
-        //     'current_datetime' => date('Y-m-d\TH:i:s\Z'),
-        //     'github_url' => 'https://github.com/samsmithkruz/hng12_01',
-        //     // 'curl'=>
-        // ];
-        echo json_encode($data);
+        jsonResponse([
+            'status' => true,
+            'message'=>'welcome to api route.'
+        ]);
     }
     public function classify_number()
     {

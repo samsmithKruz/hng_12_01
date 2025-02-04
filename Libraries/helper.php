@@ -59,15 +59,17 @@ function request($method)
 
     return (object) [];
 }
-function jsonResponse($data, $code=200)
+function jsonResponse($data, $code = 200)
 {
     header('content-type: application/json');
     http_response_code((int) $code);
     echo json_encode((array) $data);
     exit();
 }
-function isPrime($num) {
-    if ($num < 2) return false; // 0 and 1 are not prime
+function isPrime($num)
+{
+    if ($num <= 1)
+        return false; // Negative numbers, 0, and 1 are not prime
 
     for ($i = 2; $i * $i <= $num; $i++) {
         if ($num % $i === 0) {
@@ -76,37 +78,43 @@ function isPrime($num) {
     }
     return true; // If no divisors found, it's prime
 }
-function isPerfect($num) {
-    if ($num < 1) return false;
-    
+function isPerfect($num)
+{
+    if ($num <= 0)
+        return false; // Negative numbers and zero are not perfect
+
     $sum = 0;
     for ($i = 1; $i <= $num / 2; $i++) {
         if ($num % $i === 0) {
             $sum += $i;
         }
     }
-    return $sum === $num;
+    return $sum === $num; // If the sum of divisors equals the number, it's perfect
 }
-function digitSum($num) {
-    return array_sum(str_split($num));
+
+function digitSum($num)
+{
+    return array_sum(str_split(abs($num)));
 }
 
 function isArmstrong($num) {
+    if ($num < 0) return false; // Armstrong numbers are only positive
     $digits = str_split($num);
     $power = count($digits);
     $sum = array_sum(array_map(fn($d) => pow($d, $power), $digits));
 
     return $sum == $num;
 }
-function getProperties($num) {
+function getProperties($num)
+{
     $properties = [];
-    
+
     if (isArmstrong($num)) {
         $properties[] = "armstrong";
     }
-    
+
     $properties[] = ($num % 2 === 0) ? "even" : "odd";
-    
+
     return $properties;
 }
 
