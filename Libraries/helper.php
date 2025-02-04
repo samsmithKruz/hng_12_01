@@ -98,7 +98,7 @@ function digitSum($num)
 }
 
 function isArmstrong($num) {
-    $num = abs((int) $num);
+    if($num < 0) return false;
     $digits = str_split($num);
     $power = count($digits);
     $sum = array_sum(array_map(fn($d) => pow($d, $power), $digits));
