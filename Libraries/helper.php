@@ -94,7 +94,7 @@ function isPerfect($num)
 
 function digitSum($num)
 {
-    return array_sum(str_split(abs($num)));
+    return array_sum(str_split(abs($num))) * ($num < 0? -1:1);
 }
 
 function isArmstrong($num) {
