@@ -94,11 +94,10 @@ function isPerfect($num)
 
 function digitSum($num)
 {
-    return array_sum(str_split(abs($num))) * ($num < 0? -1:1);
+    return array_sum(str_split(abs($num)));
 }
 
 function isArmstrong($num) {
-    if ($num < 0) return false; // Armstrong numbers are only positive
     $digits = str_split($num);
     $power = count($digits);
     $sum = array_sum(array_map(fn($d) => pow($d, $power), $digits));

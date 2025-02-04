@@ -33,7 +33,7 @@ class ApiController
 
         if (!filter_var($number, FILTER_VALIDATE_INT) !== false) {
             jsonResponse([
-                'number' => 'abc',
+                'number' => $number == false ? "" : 'abc',
                 'error' => true
             ], 400);
 
